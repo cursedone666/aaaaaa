@@ -19,7 +19,7 @@ namespace HW_Worker
             do
             {   //amount of workers to create
                 Console.WriteLine("Enter amount of workers you would like to create");
-                choose = CheckType.Check(Console.ReadLine());
+                choose = int.Parse(Console.ReadLine());
             
             
                 //prof choosing and seting data
@@ -28,17 +28,17 @@ namespace HW_Worker
                     for (int i = 0; i < choose; i++)
                     {   
                         Console.WriteLine("Choose position: \n 1. Professor \n 2. Rector \n 3. Dean \n 4. Laborant \n 5. Assistant \n 6. Exit");
-                        profOpt = CheckType.Check(Console.ReadLine());
+                        profOpt = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the name of worker: ");
                         name = Console.ReadLine();
                         Console.WriteLine("Enter salary: ");
-                        salary = CheckType.Check(Console.ReadLine());
+                        salary = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter subordinates: ");
-                        subordinates = CheckType.Check(Console.ReadLine());
+                        subordinates = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter level of responsibility: ");
-                        respLevel = CheckType.Check(Console.ReadLine());
+                        respLevel = int.Parse(Console.ReadLine());
 
-                        workers.Add(Creation.Create(profOpt, salary, name, subordinates, respLevel));
+                        Add_worker(profOpt, salary, name, subordinates, respLevel, workers);
                     }
                 }
                 else if (choose < 0 || choose == 0)
@@ -48,7 +48,7 @@ namespace HW_Worker
 
                 //show list of workers
                 Console.WriteLine("Do you wanna see the list of workers? \n 1. Yes \n 2. No");
-                option = CheckType.Check(Console.ReadLine());
+                option = int.Parse(Console.ReadLine());
                 if (option == 1)
                 {
                     for (int i = 0; i < choose; i++)
@@ -64,7 +64,7 @@ namespace HW_Worker
                 //worker searching by name
                 bool cycle_opt = true;           
                 Console.WriteLine("Do you wanna find worker by name? \n 1. Yes \n 2. No");
-                int variant = CheckType.Check(Console.ReadLine());
+                int variant = int.Parse(Console.ReadLine());
                 if (variant == 1)
                 {
                     do
@@ -96,7 +96,7 @@ namespace HW_Worker
                     Console.WriteLine("Quiting");
                 }
                 Console.WriteLine("Do u wanna quit?\n 1. Yes \n 2. No");
-                if (CheckType.Check(Console.ReadLine()) == 1)
+                if (int.Parse(Console.ReadLine()) == 1)
                 {
                     quit = false;
                 }
@@ -109,7 +109,32 @@ namespace HW_Worker
 
 
             } while (quit);
+        }
+
+        static void Add_worker(int profOpt, double salary, string name, int subordinates, int respLevel, List<Worker> workers)
+        {
+            switch (profOpt)
+            {
+                case 1:
+
+                     workers.Add(new Professor(name, salary, subordinates, respLevel));
+                    break;
+                case 2:
+                    workers.Add(new Rector(name, salary, subordinates, respLevel));
+                    break;
+                case 3:
+                    workers.Add(new Dean(name, salary, subordinates, respLevel));
+                    break;
+                case 4:
+                    workers.Add(new Laborant(name, salary, subordinates, respLevel));
+                    break;
+                case 5:
+                    workers.Add(new Assistant(name, salary, subordinates, respLevel));
+                    break;
+                default:
+                    throw new Exception();
             }
+        }
 
 
     }

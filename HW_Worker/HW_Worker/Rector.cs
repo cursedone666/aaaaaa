@@ -20,6 +20,10 @@ namespace HW_Worker
 
         public Rector(string name, double salary, int subordinates, int respLevel)
         {
+            if(name == "")
+            {
+                throw new Exception("There is no name");
+            }
             _salary = salary;
             _name = name;
             _subordinates = subordinates;

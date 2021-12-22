@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assistant.cs" />
-    <Compile Include="CheckType.cs" />
     <Compile Include="Creation.cs" />
     <Compile Include="Dean.cs" />
     <Compile Include="Laborant.cs" />

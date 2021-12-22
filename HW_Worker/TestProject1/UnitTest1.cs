@@ -82,7 +82,15 @@ namespace TestProject1
             Assert.Equal("Dean", dean.Position());
         }
 
-       
+       [Fact]
+       public void RectorNegative()
+        {
+            Action act = () => new Rector("", 1000, 3, 3);
+            Assert.Throws<Exception>(act);
+        }
+
+        
+        
 
 
         
